@@ -11,16 +11,16 @@ namespace GameOne
         static Random random = new Random();
         static char player = '@', wall = '#', finish = 'F', space = ' ';
         static int width=21, height=11, frequency, dx = 0, dy = 0, newX, newY;
-        static int FX = random.Next(0,height);
-        static int FY = random.Next(0,width);
-        static int charX = random.Next(0,height);
-        static int charY = random.Next(0,width);
+        static int FX = random.Next(1,height);
+        static int FY = random.Next(1,width);
+        static int charX = random.Next(1,height);
+        static int charY = random.Next(1,width);
         static char[,] Field = new char[height, width];
 
         static void Main()
         {
             Init();
-            while (!CheckEndGame())
+            while (!IsEndGame())
             {
                 Draw();
                 Input();
@@ -31,7 +31,7 @@ namespace GameOne
 
         static void Init()
         {
-            Console.WriteLine("Frequency=");
+            Console.Write("Frequency=");
             frequency = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
             for (int i = 1; i < height; i++)
@@ -87,7 +87,7 @@ namespace GameOne
         static void Logic()
         {
             TryMove();
-            CheckEndGame();
+            IsEndGame();
         }
         static void TryMove()
         {
@@ -116,7 +116,7 @@ namespace GameOne
             charY = newY;
             Field[newX, newY] = player;
         }
-        static bool CheckEndGame()
+        static bool IsEndGame()
         {
             if (Field[charX, charY] == Field[FX, FY]) return true;
             return false;
