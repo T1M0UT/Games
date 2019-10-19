@@ -7,26 +7,26 @@ namespace TicTacToe
     {
         static char player1 = 'X', player2 = 'O', space = '#';
         static char[,] Field = new char[3, 3];
-        static int player1X, player1Y, player2X, player2Y;
-        static string coord1,coord2;
-        static bool successX,successY;
+        static int playersAmount = 2, playerX, playerY, StepCounter=playersAmount,height=3,width=3;
+        static string coord1, coord2;
+        static bool successX, successY,BreakFlag=false,WinFlag=false;
         static void Main()
         {
             Init();
-            while (!IsEndGame())
+            while (!WinFlag||!BreakFlag)
             {
                 Draw();
                 Input();
                 Logic();
             }
+            Result();
         }
 
         static void Init()
         {
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < width; j++)
                 {
                     Field[i, j] = space;
                 }
@@ -35,65 +35,46 @@ namespace TicTacToe
         static void Draw()
         {
             //Console.Clear();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < width; j++)
                 {
                     Console.Write(Field[i, j]);
                 }
                 Console.WriteLine();
             }
         }
-        static bool StepX = true;
         static void Input()
         {
-            if (StepX)
-            {
-                Console.WriteLine($"{player1}, coord1");
+                Console.WriteLine($"{WhoseTurn()}, coord1");
                 coord1 = Console.ReadLine();
-                successX = int.TryParse(coord1, out player1X);
-                if (successX);
-                else
-                {
-                    Input();
-                }
-                
-                
-                Console.WriteLine($"{player1}, coord2");
-                coord2 = Console.ReadLine();
-                successY = int.TryParse(coord2, out player1Y);
-                if (successY);
-                else
-                {
-                    Input();
-                }
-            }
+                successX = int.TryParse(coord1, out playerX);
+            if (successX){}
             else
             {
-                Console.WriteLine($"{player2}, coord1");
-                coord1 = Console.ReadLine();
-                successX = int.TryParse(coord1, out player2X);
-                if (successX);
-                else
-                {
-                    Input();
-                }
-
-
-                Console.WriteLine($"{player2}, coord2");
-                coord2 = Console.ReadLine();
-                successY = int.TryParse(coord2, out player2Y);
-                if (successY) ;
-                else
-                {
-                    Input();
-                }
+                Input();
+                return;
+            }
+            Console.WriteLine($"{WhoseTurn()}, coord2");
+            coord2 = Console.ReadLine();
+            successY = int.TryParse(coord2, out playerY);
+            if (successY){}
+            else
+            {
+                Input();
+                return;
             }
         }
         static void Logic()
         {
             TryPlace();
-            IsEndGame();
+            if (IsCombination())
+            {
+                 Draw();
+                 return;
+            }
+            StepCounter++;
+            if (StepCounter == playersAmount + 10) BreakFlag = true;
         }
         static void TryPlace()
         {
@@ -101,123 +82,63 @@ namespace TicTacToe
             {
                 Place();
             }
+            else
+            {
+                Input();
+                TryPlace();
+                return;
+            }
         }
         static bool IsPlaceable()
         {
-            if ((player1X <= 2) && (player1Y <= 2) && (player2X >= 0) && (player2Y >= 0))
+            if ((playerX <= 2) && (playerY <= 2) && (playerX >= 0) && (playerY >= 0))
             {
-                if (StepX)
-                {
-                    if (Field[player1X, player1Y] == space)
-                        return true;
-                }
-                if (Field[player2X, player2Y] == space)
+                if (Field[playerX, playerY] == space)
                     return true;
-
             }
             return false;
         }
         static void Place()
         {
-            if (StepX)
+            Field[playerX, playerY] = WhoseTurn();
+        }
+        static bool IsCombination()
+        {
+            if ((Field[0, 0] != space) && (Field[0, 1] != space) && (Field[0, 2] != space)) return CheckWin(0,0,0,1,0,2);
+            if ((Field[0, 0] != space) && (Field[1, 0] != space) && (Field[2, 0] != space)) return CheckWin(0,0,1,0,2,0);
+            if ((Field[1, 0] != space) && (Field[1, 1] != space) && (Field[1, 2] != space)) return CheckWin(1,0,1,1,1,2);
+            if ((Field[2, 0] != space) && (Field[2, 1] != space) && (Field[2, 2] != space)) return CheckWin(2,0,2,1,2,2);
+            if ((Field[0, 1] != space) && (Field[1, 1] != space) && (Field[2, 1] != space)) return CheckWin(0,1,1,1,2,1);
+            if ((Field[0, 2] != space) && (Field[1, 2] != space) && (Field[2, 2] != space)) return CheckWin(0,2,1,2,2,2);
+            if ((Field[0, 0] != space) && (Field[1, 1] != space) && (Field[2, 2] != space)) return CheckWin(0,0,1,1,2,2);
+            if ((Field[0, 2] != space) && (Field[1, 1] != space) && (Field[2, 0] != space)) return CheckWin(0,2,1,1,2,0);
+            else return false;
+        }
+        static bool CheckWin(int c1, int c2, int c3, int c4, int c5, int c6)
+        {
+            if (Field[c1, c2] == WhoseTurn() && Field[c3, c4] == WhoseTurn() && Field[c5, c6] == WhoseTurn())
             {
-                Field[player1X, player1Y] = player1;
-                StepX = !StepX;
+                WinFlag = true;
+                return true;
             }
-            else
+            return false;
+        }
+        static char WhoseTurn()
+        {
+            switch (StepCounter % playersAmount)
             {
-                Field[player2X, player2Y] = player2;
-                StepX = !StepX;
+                case 0:
+                    return player1;
+                case 1:
+                    return player2;
+                default:
+                    return '!';
             }
         }
-        static bool IsEndGame()
+        static void Result()
         {
-            if ((Field[0, 0] == player1) && (Field[0, 1] == player1) && (Field[0, 2] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[0, 0] == player1) && (Field[1, 0] == player1) && (Field[2, 0] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[1, 0] == player1) && (Field[1, 1] == player1) && (Field[1, 2] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[2, 0] == player1) && (Field[2, 1] == player1) && (Field[2, 2] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[0, 1] == player1) && (Field[1, 1] == player1) && (Field[2, 1] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[0, 2] == player1) && (Field[1, 2] == player1) && (Field[2, 2] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[0, 0] == player1) && (Field[1, 1] == player1) && (Field[2, 2] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-            if ((Field[0, 2] == player1) && (Field[1, 1] == player1) && (Field[2, 0] == player1))
-            {
-                Console.WriteLine("'X' WINS!");
-                return true;
-            }
-
-            if ((Field[0, 0] == player2) && (Field[0, 1] == player2) && (Field[0, 2] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[0, 0] == player2) && (Field[1, 0] == player2) && (Field[2, 0] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[1, 0] == player2) && (Field[1, 1] == player2) && (Field[1, 2] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[2, 0] == player2) && (Field[2, 1] == player2) && (Field[2, 2] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[0, 1] == player2) && (Field[1, 1] == player2) && (Field[2, 1] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[0, 2] == player2) && (Field[1, 2] == player2) && (Field[2, 2] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[0, 0] == player2) && (Field[1, 1] == player2) && (Field[2, 2] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            if ((Field[0, 2] == player2) && (Field[1, 1] == player2) && (Field[2, 0] == player2))
-            {
-                Console.WriteLine("'O' WINS!");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            if (WinFlag) Console.WriteLine($"{WhoseTurn()},Wins!");
+            else Console.WriteLine("DRAW.");
         }
     }
 }
