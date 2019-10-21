@@ -4,7 +4,7 @@ namespace GameOne
   class GameOne
   {
     static Random random = new Random();
-    static char player = '@', wall = '#', finish = 'F', space = ' ', wallTop='↑', wallBottom='↓',wallBoth='↕';
+    static char player = '@', wall = '#', finish = 'F', space = ' ', wallTop='^', wallBottom='v',wallBoth='I';
     static int width=21, height=11, deep = 4,
     // Change values up here ↑
     frequency, dx = 0, dy = 0, dz = 0, newX, newY, newZ,
@@ -37,7 +37,7 @@ namespace GameOne
     }
     static void MapGeneration()
     {   
-        Console.Write("Walls percent (20-40 percent - optimally) = ");
+        Console.Write("Walls percent (30-50 percent - optimally) = ");
         frequency = Convert.ToInt32(Console.ReadLine());
         for (int i=0; i < deep; i++)
         {
