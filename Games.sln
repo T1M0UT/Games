@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOne", "GameOne\GameOne.csproj", "{0E74C9BA-CA04-44EE-BE21-54314A84CC7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maze", "GameOne\Maze.csproj", "{0E74C9BA-CA04-44EE-BE21-54314A84CC7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C248F254-9E00-46C5-9497-24B369CF7E85}"
 EndProject

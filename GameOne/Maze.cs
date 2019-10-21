@@ -1,7 +1,7 @@
 using System;
-namespace GameOne
+namespace Maze
 {
-  class GameOne
+  class Maze
   {
     static Random random = new Random();
     static char player = '@', wall = '#', finish = 'F', space = ' ', wallTop='^', wallBottom='v',wallBoth='I';
@@ -30,7 +30,6 @@ namespace GameOne
     }
     static void Init()
     {
-      Console.WriteLine("Type 'rules' to be aware of them. Or press 'enter' to start.");
       StartReader();
       MapGeneration();
       VisualMap();
@@ -75,6 +74,7 @@ namespace GameOne
     }
     static void StartReader()
     {
+      Console.WriteLine("Type 'rules' to be aware of them. Or press 'enter' to start.");
       string input = Console.ReadLine();
       if (String.IsNullOrEmpty(input)){}
       else
@@ -84,7 +84,7 @@ namespace GameOne
         Console.WriteLine("3.This maze is three-dimensional. Use WASD+RF to move.");
         Console.WriteLine($"4.There are some '{wall}' - walls.");
         Console.WriteLine($"5.There are several pointers like '{wallTop}', '{wallBottom}', '{wallBoth}' that show in which direction the '{wall}” is in the third dimension.");
-        Console.WriteLine("Good luck! Press any key to start.");
+        Console.WriteLine("Good luck! Press enter to start.");
         
         input = Console.ReadLine();
       }
