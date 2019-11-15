@@ -1,13 +1,18 @@
 using System;
+using System.Xml;
+
 namespace Maze
 {
   class Maze
   {
     static Random random = new Random();
     static char player = '@', wall = '#', finish = 'F', space = ' ', wallTop='^', wallBottom='v',wallBoth='I';
-    static int width=21, height=11, deep = 4,
-    // Change values up here ↑
-    frequency, dx = 0, dy = 0, dz = 0, newX, newY, newZ,
+    static int width { get; set; }
+    static int height { get; set; }
+    static int deep  { get; set; }
+    static int frequency { get; set; }
+
+    static int dx = 0, dy = 0, dz = 0, newX, newY, newZ,
     FX = random.Next(1,width),
     FY = random.Next(1,height),
     FZ = random.Next(1, deep),
