@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{B6C96094-0423-495A-BDE9-F2A147EEE2E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeOnBacktracking", "MazeOnBacktracking\MazeOnBacktracking.csproj", "{F41EEA89-3071-43DA-AA10-3C02816383DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life", "Life\Life.csproj", "{14853453-31D7-4DED-B0DB-1D53562351F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{B6C96094-0423-495A-BDE9-F2A147EEE2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6C96094-0423-495A-BDE9-F2A147EEE2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6C96094-0423-495A-BDE9-F2A147EEE2E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41EEA89-3071-43DA-AA10-3C02816383DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41EEA89-3071-43DA-AA10-3C02816383DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41EEA89-3071-43DA-AA10-3C02816383DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41EEA89-3071-43DA-AA10-3C02816383DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14853453-31D7-4DED-B0DB-1D53562351F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14853453-31D7-4DED-B0DB-1D53562351F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14853453-31D7-4DED-B0DB-1D53562351F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14853453-31D7-4DED-B0DB-1D53562351F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
