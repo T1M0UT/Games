@@ -26,14 +26,14 @@ namespace Life
             {
                 for (int i = 0; i < width; i++)
                 {
-                    bool b=Rnd.RandIntAB(0, 5)==1;
+                    bool b = false; //Rnd.RandIntAB(0, 5)==1;
                     tmp[i, j] = b;
                 }
             }
-            //tmp[5, 5] = true;
-            //tmp[6, 6] = true;
-            //tmp[6, 5] = true;
-            //tmp[7, 5] = true;
+            tmp[5, 5] = true;
+            tmp[6, 6] = true;
+            tmp[6, 5] = true;
+            tmp[7, 5] = true;
         }
         static void Draw()
         {

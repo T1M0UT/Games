@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{14853453-31D7-4DED-B0DB-1D53562351F9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Life</RootNamespace>
-    <AssemblyName>Life</AssemblyName>
+    <ProjectGuid>{9A8F4525-DC15-4FDE-A01A-BBDDD718408E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LifeSFML</RootNamespace>
+    <AssemblyName>LifeSFML</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,22 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyUtils">
-      <HintPath>..\..\Study\MyUtils\bin\Debug\MyUtils.dll</HintPath>
-    </Reference>
-    <Reference Include="sfml-audio">
-      <HintPath>..\..\..\..\Desktop\sfml-audio.dll</HintPath>
-    </Reference>
-    <Reference Include="sfml-graphics">
-      <HintPath>..\..\..\..\Desktop\sfml-graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="sfml-system">
-      <HintPath>..\..\..\..\Desktop\sfml-system.dll</HintPath>
-    </Reference>
-    <Reference Include="sfml-window">
-      <HintPath>..\..\..\..\Desktop\sfml-window.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LifeTheGame.cs" />
+    <Compile Include="SFML_Life.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
